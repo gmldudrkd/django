@@ -1,14 +1,45 @@
-{% if question_list %}
-    <ul>
-    {% for question in question_list %}
-        <li><a href="{% url 'detail' question.id %}">{{ question.subject }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>질문이 없습니다.</p>
-{% endif %}
+{% extends 'base.html' %}
+{% block content %}
 
-<ul>
-    <li><a href="/pybo/server/">Server chat</a></li>
-    <li><a href="/pybo/client/">Client chat</a></li>
-</ul>
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+            </td>
+            <td>{{ question.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+
+        <tr>
+            <td>*</td>
+            <td><a href="/pybo/server/">Server chat</a></td>
+            <td>서버</td>
+        </tr>
+        <tr>
+            <td>*</td>
+            <td><a href="/pybo/client/">Client chat</a></td>
+            <td>클라이언트</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+</div>
+
+{% endblock %}

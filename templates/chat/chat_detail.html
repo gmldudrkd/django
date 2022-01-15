@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-3">
+    <h2 class="border-bottom py-2">{{ context }}</h2>
+
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{{welcome}}</div>
+        </div>
+    </div>
+
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{{answer.content}}</div>
+        </div>
+    </div>
+
+    <form method="post" class="my-3">
+        <div class="form-group">
+            <textarea name="content" id="content" class="form-control" rows="5"></textarea>
+        </div>
+        <input type="submit" value="전송" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock %}

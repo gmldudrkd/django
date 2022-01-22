@@ -1,5 +1,7 @@
 
 # Create your views here.
+import pprint
+
 from django.contrib.sites import requests
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
@@ -17,9 +19,12 @@ def index(request):
     return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")
     '''
 
-    question_list = Question.objects.order_by('-create_date')
+    '''question_list = Question.objects.order_by('-create_date')
     context = {'question_list': question_list}
-    return render(request, 'pybo/question_list.html', context)
+    return render(request, 'pybo/question_list.html', context)'''
+
+    return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")
+
 
 def answer_create(request, question_id):
     """
@@ -59,5 +64,17 @@ def question_create(request):
     }
     result = requests.post(url, data=data)
     return HttpResponse(result)
+
+def data_test():
+
+    url = 'http://openapi.tago.go.kr/openapi/service/ExpBusInfoService/getStrtpntAlocFndExpbusInfo'
+    params ={'serviceKey' : '2VHxUF1kGVgQCm34HiA23zKHV1DzYB92jG9FyirJu0Y4WsvsrGsRl89ZLLI7uMawtjfDJKXkPztHHGD+lLPoug==', 'numOfRows' : '10', 'pageNo' : '1', 'depTerminalId' : 'NAEK010', 'arrTerminalId' : 'NAEK300', 'depPlandTime' : '20200101', 'busGradeId' : '1' }
+
+    response = requests.get(url, params=params)
+    contents = response.text
+
+    dataPrint = pprint.PrettyPrint
+
+    return
 
 

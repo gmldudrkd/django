@@ -1,11 +1,12 @@
 
-
 # Create your views here.
-from django.http import HttpResponse
+from django.contrib.sites import requests
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Question, Answer
 from .form import QuestionForm
+import requests
 
 import time
 from socket import *
@@ -29,7 +30,7 @@ def answer_create(request, question_id):
     answer.save()
     return redirect('pybo:detail', question_id=question_id)
 
-def question_create(request):
+def question_created(request):
     " 질문등록 "
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -43,10 +44,20 @@ def question_create(request):
             return redirect('pybo:index')
     else:
         form = QuestionForm()
-        context = {'form':form}
+        context = {'form' :form}
         return render(request, 'pybo/question_form.html', context)
 
 def detail(request, question_id):
-    question = get_object_or_404(Question,id=question_id)
-    context = {'question':question}
+    question = get_object_or_404(Question ,id=question_id)
+    context = {'question' :question}
     return render(request, 'pybo/question_detail.html', context)
+
+def question_create(request):
+    url = f'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCH5HHuysBCaw-kMd_SjSxCFM9un3Kun0Y'
+    data = {
+        'considerIp': True,
+    }
+    result = requests.post(url, data=data)
+    return HttpResponse(result)
+
+

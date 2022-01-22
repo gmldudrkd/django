@@ -1,6 +1,9 @@
 import time
 from socket import *
 import threading
+
+from django.contrib.sites import requests
+
 from .form import QuestionForm
 from django.http import HttpResponse
 from django.shortcuts import render

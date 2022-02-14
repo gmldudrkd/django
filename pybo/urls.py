@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from . import chat
+from . import get_list
 
 app_name='pybo'
 
@@ -11,5 +12,5 @@ urlpatterns = [
     path('question/create/', views.question_create, name='question_create'),
     path('server/', chat.server),
     path('client/', chat.client),
-    path('answer/', chat.answer_create, name='answer_create'),
+    path('call_api/', get_list.index),
 ]

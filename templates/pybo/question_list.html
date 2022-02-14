@@ -5,28 +5,12 @@
     <table class="table">
         <thead>
         <tr class="thead-dark">
-            <th>번호</th>
+            <th>index</th>
             <th>제목</th>
-            <th>작성일시</th>
+            <th>담당</th>
         </tr>
         </thead>
         <tbody>
-        {% if question_list %}
-        {% for question in question_list %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>
-                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
-            </td>
-            <td>{{ question.create_date }}</td>
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <td colspan="3">질문이 없습니다.</td>
-        </tr>
-        {% endif %}
-
         <tr>
             <td>*</td>
             <td><a href="/pybo/server/">Server chat</a></td>
@@ -36,6 +20,16 @@
             <td>*</td>
             <td><a href="/pybo/client/">Client chat</a></td>
             <td>클라이언트</td>
+        </tr>
+        <tr>
+            <td>*</td>
+            <td><a href="/pybo/channels/">Channels</a></td>
+            <td>강희영</td>
+        </tr>
+        <tr>
+            <td>*</td>
+            <td><a href="/pybo/call_api/">API 호출</a></td>
+            <td>이동희</td>
         </tr>
         </tbody>
     </table>

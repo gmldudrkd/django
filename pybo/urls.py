@@ -14,7 +14,7 @@ urlpatterns = [
     path('server/', chat.server),
     path('client/', chat.client),
     path('channels/', chat.channels),
-    path('<str:room_name>/', chat.room, name='room'),
+    path('channels/<str:room_name>/', chat.room, name='room'),
     path('call_api/', get_list.index),
     path('terminalData/', api.terminal_info, name='terminal_info'),
     path('trainData/', api.train_info, name='train_info'),

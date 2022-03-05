@@ -2,13 +2,28 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
+    <title>버스정보 API</title>
 </head>
 <body>
-hello?
+<div class="selectArea">
+    <label>출발지</label>
+    <select id="StartingSelectBox" class="selectBox" name="StartingSelectBox">
+      <option value="NAEK010">서울</option>
+      <option value="1">대전</option>
+      <option value="2">대구</option>
+    </select>
 
-<select>
-    <option value="a">a</option>
-    <option value="b">b</option>
-</select>
+    <label>도착지</label>
+    <select id="destinationSelectBox" class="selectBox" name="destinationSelectBox">
+      <option value="NAEK300">대전</option>
+      <option value="1">부산</option>
+      <option value="2">진주</option>
+    </select>
+
+    <button class="btn" onclick="location.href='{% url 'pybo:terminal_info' %}'">bus!!!!</button>
+    <button class="btn" onclick="location.href='{% url 'pybo:train_info' %}'">train!!!!</button>
+</div>
+
+
+
 </body>
